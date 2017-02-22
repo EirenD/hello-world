@@ -1,0 +1,38 @@
+var TAX_RATE = 0.20; //tax is 20%
+var TOY_PRICE	= 99.99;
+var COVER_PRICE = 9.99;
+var bankBalance = 374.55; //preset user balance
+var total = bankBalance +1
+while (bankBalance < total) { //loops purchase options until user says a number of phones that's within their budget
+    var fstAns = prompt("How many of this phone would you like to purchase?");
+	if (fstAns = "") {
+		break;
+    }
+	else {
+        var total = (TOY_PRICE + (TOY_PRICE * TAX_RATE)) * fstAns;
+        if (bankBalance >= total) {
+            var covers = prompt("Sure, that comes to £" + total.toFixed(2) + ". Would you like to purchase screen protectors for these at £9.99 each, plus tax?");
+            bankBalance -= total;
+            var coversTotal = ((COVER_PRICE * fstAns) + (COVER_PRICE * fstAns) * TAX_RATE);
+            if (covers = "yes") {
+                if (bankBalance >= coversTotal) {
+                    alert("They total £" + coversTotal.toFixed(2) +". Thank you for shopping with us!");
+                    bankBalance -= coversTotal;
+                    break;
+                }
+                else if (bankBalance < coversTotal) {
+                    alert("Your card was declined. Enjoy your phones, anyway!");
+                    break;
+                }
+            }
+            else if (covers != "yes") {
+                alert("That's okay. Enjoy your phones!");
+                break;
+            }
+        }
+        else if (bankBalance < total) {
+            alert("Sorry, your card was declined. Please reconsider how many phones you'd like to purchase.");
+        }
+    }
+}
+alert("You have £" + bankBalance.toFixed(2) + " remaining in your account.");
